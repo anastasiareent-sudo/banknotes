@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="g50" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e9f7ff"/>
+      <stop offset="100%" stop-color="#c8e7ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" rx="28" fill="url(#g50)" stroke="#6aa8ff" stroke-width="4"/>
+  <text x="50" y="90" font-family="Segoe UI, sans-serif" font-size="64" fill="#1f3b57">50 рублей</text>
+  <text x="50" y="150" font-family="Segoe UI, sans-serif" font-size="36" fill="#2f5f9c">Санкт-Петербург</text>
+  <text x="50" y="210" font-family="Segoe UI, sans-serif" font-size="26" fill="#3f6fa8">Ростральная колонна • Стрелка ВО</text>
+  <text x="50" y="320" font-family="Segoe UI, sans-serif" font-size="22" fill="#6b7f9a">Моковое изображение для предварительного просмотра</text>
+</svg>

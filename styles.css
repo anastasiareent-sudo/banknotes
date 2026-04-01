@@ -1,0 +1,502 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px 0;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 1.1em;
+}
+
+.intro {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 1.1em;
+    color: #34495e;
+}
+
+.banknotes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.map-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 35px;
+}
+
+.map-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.map-header h2 {
+    color: #2c3e50;
+    margin-bottom: 6px;
+}
+
+.map-subtitle {
+    color: #555;
+    line-height: 1.5;
+    max-width: 760px;
+}
+
+.map-note {
+    background: #f0f4ff;
+    color: #4a5ea5;
+    border: 1px dashed #667eea;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 0.95em;
+}
+
+.map-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+#map {
+    min-height: 420px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px #e8e8e8;
+}
+
+.panorama-panel {
+    background: #f9fafc;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: inset 0 0 0 1px #e8e8e8;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.panel-title {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.selected-banknote {
+    background: white;
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    color: #555;
+    line-height: 1.4;
+}
+
+.selected-banknote .value {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #2c3e50;
+    display: block;
+}
+
+.selected-banknote .city {
+    color: #7f8c8d;
+    margin-top: 4px;
+    display: block;
+}
+
+.panorama {
+    background: white;
+    border-radius: 10px;
+    height: 260px !important;
+    max-height: 260px !important;
+    width: 100% !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+    display: block;
+    color: #888;
+    position: relative;
+    --value: 100%;
+}
+    --value: 100%;
+    mask: linear-gradient(to right, black var(--value), transparent var(--value));
+}
+
+.panorama > div {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.banknote-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.banknote-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.banknote-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+.banknote-image {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em;
+    color: #667eea;
+    overflow: hidden;
+}
+
+.banknote-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.banknote-info {
+    padding: 20px;
+}
+
+.banknote-value {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 8px;
+}
+
+.banknote-city {
+    font-size: 1.1em;
+    color: #7f8c8d;
+    margin-bottom: 5px;
+}
+
+.banknote-region {
+    font-size: 0.9em;
+    color: #95a5a6;
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.3s;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #667eea;
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 25px;
+    border-radius: 15px 15px 0 0;
+}
+
+.modal-header h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.modal-header .modal-subtitle {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.modal-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+    margin: 20px auto;
+    display: block;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.images-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.image-separator {
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 1px;
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    .images-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .image-separator {
+        width: 100%;
+        height: 2px;
+        margin: 10px 0;
+    }
+}
+
+.info-section {
+    margin-bottom: 25px;
+}
+
+.info-section h3 {
+    color: #667eea;
+    font-size: 1.4em;
+    margin-bottom: 12px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 8px;
+}
+
+.info-section p {
+    line-height: 1.8;
+    color: #555;
+    font-size: 1.05em;
+    margin-bottom: 10px;
+}
+
+.info-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.info-section li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+    line-height: 1.6;
+    color: #555;
+}
+
+.info-section li::before {
+    content: '📍';
+    position: absolute;
+    left: 0;
+}
+
+footer {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px 0;
+    text-align: center;
+    color: #7f8c8d;
+    margin-top: 40px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+    
+    .map-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    #map {
+        min-height: 320px;
+    }
+
+    .banknotes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+    
+    .modal-body {
+        padding: 20px;
+    }
+}
+
+.compare-button {
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+}
+
+.compare-button:hover {
+    background: #5a6fd8;
+}
+
+.compare-button.active {
+    background: #4a5ea5;
+}
+
+.panorama-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #e0e0e0;
+    z-index: 10;
+    clip-path: inset(0 0 0 var(--value));
+}
+
+.panorama-slider {
+    position: absolute;
+    margin: 0;
+    background-color: transparent;
+    outline: 0;
+    cursor: col-resize;
+    -webkit-appearance: none;
+    appearance: none;
+    inset: 0;
+    z-index: 20;
+}
+
+.panorama-slider:hover {
+    color: #4f4f4f;
+}
+
+.panorama-slider:active {
+    color: #888888;
+}
+
+.panorama-slider:focus-visible::-moz-range-thumb {
+    outline: auto;
+}
+
+.panorama-slider:focus-visible::-webkit-slider-thumb {
+    outline: auto;
+}
+
+.panorama-slider::-moz-range-thumb {
+    width: 4px;
+    height: 20px;
+    background-color: currentColor;
+    border-radius: 2px;
+    transform: translateX(calc(var(--value) - 50%));
+    appearance: none;
+}
+
+.panorama-slider::-webkit-slider-thumb {
+    width: 4px;
+    height: 20px;
+    background-color: currentColor;
+    border-radius: 2px;
+    transform: translateX(calc(var(--value) - 50%));
+    -webkit-appearance: none;
+    appearance: none;
+}
