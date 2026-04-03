@@ -248,56 +248,56 @@ function initModal() {
 // Открытие модального окна с информацией о банкноте
 function openModal(banknote) {
     const modal = document.getElementById('banknoteModal');
-    const modalBody = document.getElementById('modalBody');
-
+    
+    // Находим элементы ВНУТРИ модалки
+    const modalHeader = modal.querySelector('.modal-header');
+    const modalBody = modal.querySelector('.modal-body');
+    
     const modalImage = banknote.image
-        ? `<img class="modal-image" src="${banknote.image}" alt="${banknote.value} рублей — ${banknote.city} (лицевая сторона)">`
-        : `<div class="banknote-image" style="margin: 20px auto; width: 200px; height: 120px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 3em; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
-                ${banknote.emoji} ${banknote.value}₽
-           </div>`;
+        ? `<img class="modal-image" src="${banknote.image}" alt="${banknote.value} рублей">`
+        : `<div class="banknote-image">${banknote.emoji} ${banknote.value}₽</div>`;
     
     const secondModalImage = banknote.secondImage
-        ? `<img class="modal-image" src="${banknote.secondImage}" alt="${banknote.value} рублей — ${banknote.city} (оборотная сторона)">`
+        ? `<img class="modal-image" src="${banknote.secondImage}" alt="${banknote.value} рублей (оборот)">`
         : '';
     
+    // Заполняем ТОЛЬКО .modal-body
     modalBody.innerHTML = `
-        <div class="modal-header">
-            <h2>${banknote.emoji} ${banknote.value} рублей</h2>
-            <div class="modal-subtitle">${banknote.city}, ${banknote.region}</div>
+        <div class="images-container">
+            ${modalImage}
+            ${secondModalImage ? `<div class="image-separator"></div>${secondModalImage}` : ''}
         </div>
-        <div class="modal-body">
-            <div class="images-container">
-                ${modalImage}
-                ${secondModalImage ? `<div class="image-separator"></div>${secondModalImage}` : ''}
-            </div>
-            
-            <div class="info-section">
-                <h3>О городе</h3>
-                <p>${banknote.geography}</p>
-            </div>
-            
-            <div class="info-section">
-                <h3>Описание</h3>
-                <p>${banknote.description}</p>
-            </div>
-            
-            <div class="info-section">
-                <h3>Дата ввода в обращение</h3>
-                <p>${banknote.date} год</p>
-            </div>
-            
-            <div class="info-section">
-                <h3>Достопримечательности</h3>
-                <ul>
-                    ${banknote.landmarks.map(landmark => `<li>${landmark}</li>`).join('')}
-                </ul>
-            </div>
+        
+        <div class="info-section">
+            <h3>О городе</h3>
+            <p>${banknote.geography}</p>
+        </div>
+        
+        <div class="info-section">
+            <h3>Описание</h3>
+            <p>${banknote.description}</p>
+        </div>
+        
+        <div class="info-section">
+            <h3>Дата ввода в обращение</h3>
+            <p>${banknote.date} год</p>
+        </div>
+        
+        <div class="info-section">
+            <h3>Достопримечательности</h3>
+            <ul>
+                ${banknote.landmarks.map(landmark => `<li>${landmark}</li>`).join('')}
+            </ul>
         </div>
     `;
     
+    // Обновляем заголовок
+    if (modalHeader) {
+        modalHeader.querySelector('h2').textContent = `${banknote.emoji} ${banknote.value} рублей`;
+        modalHeader.querySelector('.modal-subtitle').textContent = `${banknote.city}, ${banknote.region}`;
+    }
+    
     modal.style.display = 'block';
-
-    // Подсветить метку на карте
     focusOnMap(banknote);
 }
 

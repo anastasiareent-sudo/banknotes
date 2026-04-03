@@ -155,9 +155,6 @@ header h1 {
     position: relative;
     --value: 100%;
 }
-    --value: 100%;
-    mask: linear-gradient(to right, black var(--value), transparent var(--value));
-}
 
 .panorama > div {
     width: 100% !important;
@@ -243,6 +240,7 @@ header h1 {
     animation: fadeIn 0.3s;
 }
 
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -256,7 +254,9 @@ header h1 {
     width: 90%;
     max-width: 700px;
     max-height: 85vh;
-    overflow-y: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     animation: slideDown 0.3s;
 }
@@ -273,18 +273,39 @@ header h1 {
 }
 
 .close {
-    color: #aaa;
-    float: right;
+    color: #fff;
     font-size: 28px;
     font-weight: bold;
-    padding: 15px 20px;
+    padding: 0 10px;
     cursor: pointer;
     transition: color 0.3s;
+    line-height: 1;
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px 25px;
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    font-size: 1.7em;
+    margin: 0;
+}
+
+.modal-header .modal-subtitle {
+    font-size: 0.95em;
+    opacity: 0.9;
+    margin: 2px 0 0;
 }
 
 .close:hover,
 .close:focus {
-    color: #667eea;
+    color: #ffeaa7;
 }
 
 .modal-header {
@@ -306,6 +327,9 @@ header h1 {
 
 .modal-body {
     padding: 30px;
+    flex: 1 1 auto;
+    overflow-y: auto;
+
 }
 
 .modal-image {
@@ -420,6 +444,7 @@ footer {
     
     .modal-body {
         padding: 20px;
+    overflow-y: scroll; /* принудительно покажет скролл */
     }
 }
 
